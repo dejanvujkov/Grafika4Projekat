@@ -68,6 +68,17 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\LineEntity.cs" />
+    <Compile Include="Model\Lines.cs" />
+    <Compile Include="Model\NetworkModel.cs" />
+    <Compile Include="Model\NodeEntity.cs" />
+    <Compile Include="Model\Nodes.cs" />
+    <Compile Include="Model\Point.cs" />
+    <Compile Include="Model\SubstationEntity.cs" />
+    <Compile Include="Model\Substations.cs" />
+    <Compile Include="Model\SwitchEntity.cs" />
+    <Compile Include="Model\Switches.cs" />
+    <Compile Include="Model\Vertices.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -92,6 +103,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="XML\Geographic.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
