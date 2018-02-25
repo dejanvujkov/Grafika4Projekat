@@ -43,9 +43,6 @@
     <Reference Include="HelixToolkit.Wpf, Version=1.1.0.0, Culture=neutral, PublicKeyToken=52aa3500039caf0d, processorArchitecture=MSIL">
       <HintPath>..\packages\HelixToolkit.Wpf.1.1.0\lib\net45\HelixToolkit.Wpf.dll</HintPath>
     </Reference>
-    <Reference Include="HelixToolkit.Wpf.SharpDX, Version=1.1.0.0, Culture=neutral, PublicKeyToken=52aa3500039caf0d, processorArchitecture=MSIL">
-      <HintPath>..\packages\HelixToolkit.Wpf.SharpDX.1.1.0\lib\net45\HelixToolkit.Wpf.SharpDX.dll</HintPath>
-    </Reference>
     <Reference Include="SharpDX, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
       <HintPath>..\packages\SharpDX.4.0.1\lib\net45\SharpDX.dll</HintPath>
     </Reference>
@@ -147,13 +144,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Image\RG PSI - slika mape za PZ4.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="sharpdx_direct3d11_1_effects_arm.dll" />
-    <Content Include="sharpdx_direct3d11_1_effects_x64.dll" />
-    <Content Include="sharpdx_direct3d11_1_effects_x86.dll" />
-    <Content Include="x64\d3dcompiler_47.dll" />
-    <Content Include="x86\d3dcompiler_47.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

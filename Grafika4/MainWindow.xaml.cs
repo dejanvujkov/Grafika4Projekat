@@ -61,10 +61,11 @@ namespace Grafika4
           private void FixNumbers()
           {
                var removeSubstation = new List<SubstationEntity>();
+
                foreach (var v in networkModel.Substations.SubstationEntity)
                {
                     ToLatLon(v.X, v.Y, out double x, out double y);
-                    if (x < Constants.BottomX || x > Constants.UpperX || y > Constants.BottomY || y < Constants.UpperY)
+                    if (x < Constants.BottomX || x > Constants.UpperX || y < Constants.BottomY || y > Constants.UpperY)
                     {
                          removeSubstation.Add(v);
                     }
@@ -91,7 +92,7 @@ namespace Grafika4
                foreach (var v in networkModel.Switches.SwitchEntity)
                {
                     ToLatLon(v.X, v.Y, out double x, out double y);
-                    if (x < Constants.BottomX || x > Constants.UpperX || y > Constants.BottomY || y < Constants.UpperY)
+                    if (x < Constants.BottomX || x > Constants.UpperX || y < Constants.BottomY || y > Constants.UpperY)
                     {
                          removeSwitch.Add(v);
                     }
@@ -119,7 +120,7 @@ namespace Grafika4
                foreach (var v in networkModel.Nodes.NodeEntity)
                {
                     ToLatLon(v.X, v.Y, out double x, out double y);
-                    if (x < Constants.BottomX || x > Constants.UpperX || y > Constants.BottomY || y < Constants.UpperY)
+                    if (x < Constants.BottomX || x > Constants.UpperX || y < Constants.BottomY || y > Constants.UpperY)
                     {
                          removeNode.Add(v);
                     }
@@ -206,6 +207,7 @@ namespace Grafika4
           {
                //TODO on checked
                //napisati viewport3d.children.add(svaki element iz liste linija)
+               
                MessageBox.Show("Checked");
           }
 

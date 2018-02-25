@@ -17,7 +17,7 @@
 
           <helix:HelixViewport3D Grid.Row="1" x:Name="viewport3d" ZoomExtentsWhenLoaded="True" ShowCameraTarget="False" ShowViewCube="False">
                <helix:HelixViewport3D.Camera>
-                    <PerspectiveCamera Position="2,0,10" LookDirection="0,0,-10" FieldOfView="65" UpDirection="0,1,0"/>
+                    <PerspectiveCamera Position="2,0,13" LookDirection="0,0,-10" FieldOfView="65" UpDirection="0,1,0"/>
                </helix:HelixViewport3D.Camera>
 
                <helix:HelixViewport3D.Children>
