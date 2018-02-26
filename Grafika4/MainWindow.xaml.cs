@@ -1,6 +1,7 @@
 ﻿using Grafika4.Model;
 using HelixToolkit.Wpf;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -27,9 +28,11 @@ namespace Grafika4
      {
           private NetworkModel networkModel { get; set; }
           private Dictionary<string, CubeVisual3D> allNodes { get; set; }
+          private Dictionary<GeometryModel3D, IdentifyObject> elements { get; set; }
+          private ArrayList models { get; set; }
           private List<Model3D> lines { get; set; }
-          
-          
+          private GeometryModel3D hitgeo;
+
           public MainWindow()
           {
                DataContext = new ViewModel();
@@ -37,6 +40,8 @@ namespace Grafika4
                DrawPicture();
                allNodes = new Dictionary<string, CubeVisual3D>();
                lines = new List<Model3D>();
+               models = new ArrayList();
+               elements = new Dictionary<GeometryModel3D, IdentifyObject>();
                LoadXml();
                SetupHelix();
                Display();
@@ -124,7 +129,7 @@ namespace Grafika4
                          Model.Point point = Scale(x, y);
                          v.X = point.X;
                          v.Y = point.Y;
-                         CreateModel(v.Id, NodeType.Substation, v.X, v.Y);
+                         CreateModel(v.Id, NodeType.Substation, v.X, v.Y, v);
                          
                     }
                }
@@ -137,7 +142,7 @@ namespace Grafika4
                          Model.Point point = Scale(x, y);
                          v.X = point.X;
                          v.Y = point.Y;
-                         CreateModel(v.Id, NodeType.Switch, v.X, v.Y);
+                         CreateModel(v.Id, NodeType.Switch, v.X, v.Y, v);
 
                     }
                }
@@ -152,7 +157,7 @@ namespace Grafika4
                          Model.Point point = Scale(x, y);
                          v.X = point.X;
                          v.Y = point.Y;
-                         CreateModel(v.Id, NodeType.Node, v.X, v.Y);
+                         CreateModel(v.Id, NodeType.Node, v.X, v.Y, v);
                     }
                }
 
@@ -216,8 +221,9 @@ namespace Grafika4
           #endregion
 
           #region Create Model
-          private void CreateModel(string id, NodeType type, double x, double y)
+          private void CreateModel(string id, NodeType type, double x, double y, IdentifyObject identify)
           {
+               
                var model = new CubeVisual3D
                {
                     Center = new Point3D(x, y, 0),
@@ -227,7 +233,10 @@ namespace Grafika4
                if (type == NodeType.Switch) model.Material = Materials.Yellow;
                if (type == NodeType.Node) model.Material = Materials.Red;
 
+               
                allNodes.Add(id, model);
+               models.Add(model.Model);
+               elements.Add(model.Model, identify);
           }
           #endregion
 
@@ -350,6 +359,48 @@ namespace Grafika4
                return geometryModel3D;
           }
           #endregion
-          
+
+          #region HitTest
+          private void viewport3d_MouseDown(object sender, MouseButtonEventArgs e)
+          {
+               System.Windows.Point mouseposition = e.GetPosition(viewport3d);
+               PointHitTestParameters pointparams = new PointHitTestParameters(mouseposition);
+
+               // test for a result in the Viewport3D     
+               hitgeo = null;
+               VisualTreeHelper.HitTest(viewport3d, null, HTResult, pointparams);
+          }
+
+          private HitTestResultBehavior HTResult(HitTestResult result)
+          {
+               if (result is RayHitTestResult rayResult)
+               {
+                    if (models.Contains(rayResult.ModelHit))
+                    {
+                         ToolTip toolTip = new ToolTip
+                         {
+                              Content = elements[(GeometryModel3D)rayResult.ModelHit].ToString(),
+                              IsOpen = true
+                         };
+                         ToolTip viewport3DToolTip = (ToolTip)viewport3d.ToolTip;
+                         if (viewport3DToolTip != null)
+                         {
+                              viewport3DToolTip.IsOpen = false;
+                         }
+
+                         viewport3d.ToolTip = toolTip;
+                    }
+                    else
+                    {
+                         ToolTip viewport3dToolTip = (ToolTip)viewport3d.ToolTip;
+                         if(viewport3dToolTip != null)
+                         {
+                              viewport3dToolTip.IsOpen = false;
+                         }
+                    }
+               }
+               return HitTestResultBehavior.Stop;
+          } 
+          #endregion
      }
 }

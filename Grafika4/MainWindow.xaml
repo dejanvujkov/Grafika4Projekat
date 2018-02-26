@@ -15,7 +15,7 @@
 
           <CheckBox Grid.Row="0" Checked="CheckBox_Checked" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,5,0,0" Unchecked="CheckBox_Unchecked">Enable Lines</CheckBox>
 
-          <helix:HelixViewport3D Grid.Row="1" x:Name="viewport3d" ZoomExtentsWhenLoaded="True" ShowCameraTarget="False" ShowViewCube="True" Height="{Binding ViewHeight}" Width="{Binding ViewWidth}">
+          <helix:HelixViewport3D Grid.Row="1" x:Name="viewport3d" ZoomExtentsWhenLoaded="True" ShowCameraTarget="True" ShowViewCube="True" Height="{Binding ViewHeight}" Width="{Binding ViewWidth}" MouseDown="viewport3d_MouseDown">
                <helix:HelixViewport3D.Camera>
                     <PerspectiveCamera Position="0.5,0.5,1"
                                    LookDirection="0.5,0.5,-200" />

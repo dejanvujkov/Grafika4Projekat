@@ -3,30 +3,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Controls;
-using System.Windows.Media;
-using System.Windows.Shapes;
 using System.Xml.Serialization;
 
 namespace Grafika4.Model
 {
-     [XmlRoot(ElementName = "SwitchEntity")]
-     public class SwitchEntity : IdentifyObject
-     {
-          [XmlElement(ElementName = "Id")]
+    public class IdentifyObject
+    {
           public string Id { get; set; }
+
           [XmlElement(ElementName = "Name")]
           public string Name { get; set; }
-          [XmlElement(ElementName = "Status")]
-          public string Status { get; set; }
+
           [XmlElement(ElementName = "X")]
           public double X { get; set; }
+
           [XmlElement(ElementName = "Y")]
           public double Y { get; set; }
 
           public override string ToString()
           {
-               return $"ID: {Id}, Name: {Name}";
+               return $"ID: {Id}\nName: {Name}";
           }
      }
 }
