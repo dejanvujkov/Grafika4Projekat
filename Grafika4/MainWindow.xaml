@@ -15,9 +15,11 @@
 
           <CheckBox Grid.Row="0" Checked="CheckBox_Checked" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,5,0,0" Unchecked="CheckBox_Unchecked">Enable Lines</CheckBox>
 
-          <helix:HelixViewport3D Grid.Row="1" x:Name="viewport3d" ZoomExtentsWhenLoaded="True" ShowCameraTarget="False" ShowViewCube="False">
+          <helix:HelixViewport3D Grid.Row="1" x:Name="viewport3d" ZoomExtentsWhenLoaded="True" ShowCameraTarget="False" ShowViewCube="True" Height="{Binding ViewHeight}" Width="{Binding ViewWidth}">
                <helix:HelixViewport3D.Camera>
-                    <PerspectiveCamera Position="2,0,13" LookDirection="0,0,-10" FieldOfView="65" UpDirection="0,1,0"/>
+                    <PerspectiveCamera Position="0.5,0.5,1"
+                                   LookDirection="0.5,0.5,-200" />
+
                </helix:HelixViewport3D.Camera>
 
                <helix:HelixViewport3D.Children>
@@ -29,21 +31,13 @@
 
                     <ModelVisual3D>
                          <ModelVisual3D.Content>
-                              <Model3DGroup>
-                                   <GeometryModel3D>
-                                        <GeometryModel3D.Material>
-                                             <DiffuseMaterial>
-                                                  <DiffuseMaterial.Brush>
-                                                       <ImageBrush ImageSource="Image/RG PSI - slika mape za PZ4.jpg"/>
-                                                  </DiffuseMaterial.Brush>
-                                             </DiffuseMaterial>
-                                        </GeometryModel3D.Material>
+                              <Model3DGroup x:Name="Slika"/>
+                         </ModelVisual3D.Content>
+                    </ModelVisual3D>
 
-                                        <GeometryModel3D.Geometry>
-                                             <MeshGeometry3D Positions="-3,3.5,4 7,3.5,4 -3,-2.5,4, 7,-2.5,4" TextureCoordinates="0,0 1,0 0,1 1,1" TriangleIndices="0,2,3 0,3,1" />
-                                        </GeometryModel3D.Geometry>
-                                   </GeometryModel3D>
-                              </Model3DGroup>
+                    <ModelVisual3D>
+                         <ModelVisual3D.Content>
+                              <Model3DGroup x:Name="Linije"/>
                          </ModelVisual3D.Content>
                     </ModelVisual3D>
                </helix:HelixViewport3D.Children>
